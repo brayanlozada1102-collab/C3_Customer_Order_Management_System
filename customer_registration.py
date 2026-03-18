@@ -1,24 +1,35 @@
+#This is the Email and username validator
 def email_validator(email:str)-> str:
     validator = len(email)
     if validator < 10:
         print("Is not a valid email, a valid email has a minimum of 10 letters")
-        return None
+        email = input("Enter a valid email: ")
+        return email_validator(email)
+        
     if "@" not in email: 
         print("Invalid Email, a valid one has an '@' on it!")
-        return None
+        email = input("Enter a valid email: ")
+        return email_validator(email)
+
     if "." not in email: 
         print("Invalid Email, doesn't has a dot")
-        return None
+        email = input("Enter a valid email: ")
+        return email_validator(email)
     return email
 
-def create_user(user_name: str, user_email: str) -> dict:
-    if user_name.strip() == "":
+def name_validator(name: str):
+    if name.strip() == "":
         print("Name cannot be a empty. Try again!")
-        return None
+        name = input("Enter a valid name: ")
+        return name_validator(name)
+    return name
+
+#This is the user_dict creation
+def create_user(user_name: str, user_email: str) -> dict:
     user = {"username": user_name, "email": user_email}
     return user
     
-
+#This is the function to add the user_dict to the database_dict
 def add_to_db(user: dict, db: dict) -> dict:
     new_id = 0
     try:
@@ -30,29 +41,18 @@ def add_to_db(user: dict, db: dict) -> dict:
     return db
 
 
-user_database = {}
+customers_db = {}
 
-name = input("enter name: ")
-email = input("enter email: ")
+print(customers_db)
 
-user_1 = create_user(name, email)
+name = input("Enter a new customer name: ")
+name_validated = name_validator(name)
 
-print(add_to_db(user_1, user_database))
+email = input("Enter a new customer email: ")
+email_validated = email_validator(email)
 
-name = input("enter name: ")
-email = input("enter email: ")
-
-user_2 = create_user(name, email)
-
-print(add_to_db(user_2, user_database))
+new_user = create_user(name_validated, email_validated)
+customers_db = add_to_db(new_user, customers_db)
+print(customers_db)
 
 
-#Example
-#This is how the product_db has to look
-false_db = {
-    1: {
-    'username': 'Juan', 
-    'email': 'juanito@gmail.com'}, 
-    2: {'username': 'Pepito Perez', 
-        'email': 'pepitope@gmail.com'}
-        }
