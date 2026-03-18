@@ -47,16 +47,6 @@ El programa se divide en 6 funcionalidades clave. Cada función debe recibir par
 5. *Cálculo de Ingresos:* Procesa el total recaudado de todos los pedidos del día.
 6. *Generación de Reporte Final:* Muestra un resumen detallado para la administración.
 
-## 📋 Reglas de Sustentación y Evaluación
-
-El equipo comienza con *100 puntos*. El éxito depende de la claridad y el dominio técnico:
-
-* *Sin Listas:* El uso de cualquier estructura de lista ([]) anula los criterios de evaluación de datos.
-* *Modularización:* Cada funcionalidad debe estar aislada y ser llamada desde el flujo principal.
-* *Penalización por Ayuda:* Si un compañero debe intervenir para ayudar al sustentador, se restan *10 puntos*.
-* *Preguntas Técnicas:* Cada respuesta incorrecta sobre la lógica o algoritmos resta *20 puntos*.
-* *Idioma:* Aunque este manual es de apoyo interno, el código final y los comentarios en GitHub deben estar en *inglés*.
-
 ## 🚀 Instrucciones para el Equipo
 
 * *Git Flow:* Trabajen en ramas separadas por funcionalidad y realicen el merge a la rama principal una vez probada la función.
