@@ -1,3 +1,16 @@
+def email_validator(email:str)-> str:
+    validator = len(email)
+    if validator < 10:
+        print("Is not a valid email, a valid email has a minimum of 10 letters")
+        return None
+    if "@" not in email: 
+        print("Invalid Email, a valid one has an '@' on it!")
+        return None
+    if "." not in email: 
+        print("Invalid Email, doesn't has a dot")
+        return None
+    return email
+
 def create_user(user_name: str, user_email: str) -> dict:
     if user_name.strip() == "":
         print("Name cannot be a empty. Try again!")
@@ -32,3 +45,14 @@ email = input("enter email: ")
 user_2 = create_user(name, email)
 
 print(add_to_db(user_2, user_database))
+
+
+#Example
+#This is how the product_db has to look
+false_db = {
+    1: {
+    'username': 'Juan', 
+    'email': 'juanito@gmail.com'}, 
+    2: {'username': 'Pepito Perez', 
+        'email': 'pepitope@gmail.com'}
+        }
