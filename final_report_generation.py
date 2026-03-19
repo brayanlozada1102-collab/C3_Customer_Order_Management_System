@@ -27,14 +27,31 @@ products_db = {
 orders_db = {} 
 total_ingresos_dia = 0.0
 conteo_pedidos_totales = 0
+def validate_inputs(type, message, is_number= False):
+    warning = ""
+    while message:
+        try:
+            a = type(input(f"Enter {message}{warning}: "))
+            if is_number:
+                if a <= 0:
+                    print("Enter a positive number")
+                    warning = " positive"
+                    continue
+            return a
+        except:
+            print(f"Enter a valid {'number' if is_number else 'letter'}")
+            warning = " again"
 
+# name = validate_inputs(str, "name")
+# age = validate_inputs(int, "age", True)
+# cantidad = validate_inputs(float, "quantity", True)
 #Total number of orders registered
 def show_register_orders():
     df = pd.DataFrame()
 #Total revenue generated
-datos = {'a': 1, 'b': 2}
-for clave, valor in datos:
-    print(f"Clave: {clave}, Valor: {valor}")
+# datos = {'a': 1, 'b': 2}
+# for clave, valor in datos.items():
+#     print(f"Clave: {clave}, Valor: {valor}")
 
 #orders grouped by customer
 
