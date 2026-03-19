@@ -1,8 +1,8 @@
 # PRODUCTS: dictionary with (name, price)
-#roducts = {
-#    1: ("apple", 3000),
-#    2: ("pear", 2000),
- #   3: ("orange", 4000)
+#products = {
+ #   1: ("apple", 3000),
+  #  2: ("pear", 2000),
+  #  3: ("orange", 4000)
 #}
 
 # USERS: basic user database
@@ -10,19 +10,13 @@
  #   1: {
   #      "user_name": "pepe",
    #     "user_email": "pepe@gmail.com"
-     #   },
-    #2: {
-      #  "user_name": "Andres",
-       # "user_email": "andres@gmail.com" 
-       # }
+    #    },
+   # 2: {
+   #     "user_name": "Andres",
+    #    "user_email": "andres@gmail.com" 
+     #   }
     #}
 
-
-
-
-def check_user_and_key(user_db):
-    for key, value in user_db.items():
-        print(f"the id is {key} and the user is: {value['user_email']}")
 
 
 
