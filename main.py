@@ -11,7 +11,7 @@ def main():
     
     print("--- Sales Registration System ---")
     
-    while True :
+    while True :  # no user while true bro
         print("\n1. Register Customer\n2. Register Product\n3. Create Order\n4. View Orders\n5. Final Report & Exit")
         option = input("Select an option: ")
         
