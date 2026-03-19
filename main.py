@@ -1,6 +1,7 @@
 
 from customer_registration import email_validator,str_validator,create_user,add_to_db
 from products_register import register_product, number_validator
+from order_creation import check_user_and_key, sell_product
 
 def main():
     # Initial data structures (Dictionaries only)
@@ -50,8 +51,7 @@ def main():
             quantity = int(input("Quantity: "))
             
             if customer_id in customers_db and product_id in products_db:
-                print(customer_id)
-                print(product_id)
+                check_user_and_key
                 
             else:
                 print("Invalid Customer or Product ID.")

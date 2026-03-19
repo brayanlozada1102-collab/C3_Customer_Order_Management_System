@@ -5,13 +5,13 @@ products={
     }
 
 
-def float_validator(number,type):
+def number_validator(number,type):
     try: 
         type(number)
     except ValueError:
         print("Invalid number!")
         number = input("Enter a valid number: ")
-        return float_validator(number)
+        return number_validator(number)
     return number
 
 #A funtion to allow the user to add a new tuple in the dictionary, assing it the ID
