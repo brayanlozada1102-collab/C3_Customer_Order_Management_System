@@ -17,12 +17,21 @@ def email_validator(email:str)-> str:
         return email_validator(email)
     return email
 
-def name_validator(name: str):
-    if name.strip() == "":
+def str_validator(text: str, message:str )-> str | None:
+    """
+    This funcion validate that input is a valid str
+    Args:
+        text:str.
+            
+    Returns:
+        return valid str.
+    """
+    
+    if text.strip() == "":
         print("Name cannot be a empty. Try again!")
-        name = input("Enter a valid name: ")
-        return name_validator(name)
-    return name
+        text = input(f"Enter a valid {message}: ")
+        return str_validator(text)
+    return text
 
 #This is the user_dict creation
 def create_user(user_name: str, user_email: str) -> dict:
@@ -41,18 +50,18 @@ def add_to_db(user: dict, db: dict) -> dict:
     return db
 
 
-customers_db = {}
+# customers_db = {}
 
-print(customers_db)
+# print(customers_db)
 
-name = input("Enter a new customer name: ")
-name_validated = name_validator(name)
+# name = input("Enter a new customer name: ")
+# name_validated = name_validator(name)
 
-email = input("Enter a new customer email: ")
-email_validated = email_validator(email)
+# email = input("Enter a new customer email: ")
+# email_validated = email_validator(email)
 
-new_user = create_user(name_validated, email_validated)
-customers_db = add_to_db(new_user, customers_db)
-print(customers_db)
+# new_user = create_user(name_validated, email_validated)
+# customers_db = add_to_db(new_user, customers_db)
+# print(customers_db)
 
 
