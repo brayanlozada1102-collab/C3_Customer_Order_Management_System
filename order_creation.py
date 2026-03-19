@@ -19,11 +19,9 @@
 
 
 
-
 def check_user_and_key(user_db):
     for key, value in user_db.items():
-        print(f"the id is {key} and the user is: {value['user_email']}")
-
+        print(f"the id is {key} and the user is: {value['user_name']}")
 
 def sell_product(products, user_db):
 
