@@ -1,45 +1,79 @@
-# productos falsos (diccionario con tuplas)
-productos = {
-    1: ("manzana", 3000),
-    2: ("pera", 2000)
+# PRODUCTS: dictionary with (name, price)
+products = {
+    1: ("apple", 3000),
+    2: ("pear", 2000),
+    3: ("orange", 4000)
 }
 
-user_db = {
-    1: {
-        "user_id": 1,
-        "user_name": "pepe",
-        "user_email": "pepe@gmail.com" 
-    },
-
-    2: {
-        "user_id": 2,
-        "user_name": "Andres",
-        "user_email": "andres@gmail.com" 
-    }
+# USERS: basic user database
+user_db = { 
+    1: {"user_id": 1, "user_name": "pepe"}, 
+    2: {"user_id": 2, "user_name": "Andres"} 
 }
 
+def sell_product(products, user_db):
 
-def vender_producto(product_id):
-#Función reutilizable: recibe el id del producto, pide la cantidad y calcula el total
+    # ===== USER VALIDATION =====
+    # Ask for user ID and repeat until it exists
+    user_id = int(input("Enter user ID: "))
 
-    while user_id == True:
-        user_id = int(input("ingresa id del cliente: "))
+    while user_id not in user_db:
+        print("User does not exist")
+        user_id = int(input("Enter a valid ID: "))
 
-        if user_id not in user_db:
-            print("El usuario no existe")
-            return
-        
-    if product_id not in productos:
-        print("Producto no existe")
-        return
+    # Get user name and welcome message
+    user_name = user_db[user_id]["user_name"]
+    
+    print("-------------------------------")
+    print("Welcome", user_name)
+    print("-------------------------------")
 
-    cantidad = int(input("Ingrese la cantidad a vender: "))
-    precio = productos[product_id][1]
-    total = precio * cantidad
-    print("Total a pagar:", total)
+
+    # ===== INITIALIZE TOTAL =====
+    # Variable to accumulate all purchases
+    total = 0  
+
+    # Control variable to continue buying
+    continue_buying = "si"
+
+
+    # ===== MAIN LOOP (SHOPPING PROCESS) =====
+    # Loop runs until user types "no"
+    while continue_buying != "no":
+
+        # ----- SHOW PRODUCTS -----
+        print("Available products:")
+        for product_id in products:
+            print(product_id, products[product_id][0], products[product_id][1])
+
+        # ----- SELECT PRODUCT -----
+        # Ask for product ID and validate it
+        product_id = int(input("Enter product ID: "))
+
+        while product_id not in products:
+            print("Product does not exist")
+            product_id = int(input("Enter a valid ID: "))
+
+        # ----- ASK QUANTITY -----
+        quantity = int(input("Quantity: "))
+
+        # ----- CALCULATE SUBTOTAL -----
+        price = products[product_id][1]
+        subtotal = price * quantity
+        print("Subtotal:", subtotal)
+
+        # ----- ADD TO TOTAL -----
+        total += subtotal 
+
+        # ----- ASK TO CONTINUE -----
+        continue_buying = input("Do you want to add another product? (si/no): ").lower()
+
+
+    # ===== FINAL TOTAL =====
+    print("Total to pay:", total)
+
     return total
 
 
-# ===== PRUEBA =====
-
-vender_producto(1)
+# ===== FUNCTION CALL =====
+sell_product(products, user_db)
