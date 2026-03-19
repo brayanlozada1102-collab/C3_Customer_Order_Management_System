@@ -1,10 +1,14 @@
 
-from customer_registration import email_validator,str_validator
+from customer_registration import email_validator,str_validator,create_user,add_to_db
+from products_register import register_product, number_validator
 
 def main():
     # Initial data structures (Dictionaries only)
     customers_db = {} 
-    products_db = {} 
+    products_db = {
+        1:('coffe',1500),
+        2:('azucar',2000)
+    } 
     orders_db = {} 
     
     order_counter = 1
@@ -27,26 +31,28 @@ def main():
             print("Customer registered.")
             
         elif option == "2":
-            p_id = input("Product ID: ")
-            p_name = input("Product Name: ")
-            price = float(input("Unit Price: "))
-            products = add_product(p_id, p_name, price, products)
+            
+            product_name = input("Product Name: ")
+            product_name_validated = str_validator(product_name,"product name")
+            price = input("Unit Price: ")
+            price_validated = number_validator(price,float)
+            products_db = register_product(products_db, product_name_validated, price_validated)
             print("Product registered.")
+            print(products_db)
             
         elif option == "3":
-            if not customers or not products:
+            if not customers_db or not products_db:
                 print("Error: Need customers and products first.")
                 continue
             
-            c_id = input("Customer ID: ")
-            p_id = input("Product ID: ")
-            qty = int(input("Quantity: "))
+            customer_id = int(input("Customer ID: "))
+            product_id = int(input("Product ID: "))
+            quantity = int(input("Quantity: "))
             
-            if c_id in customers and p_id in products:
-                o_id = f"ORD-{order_counter}"
-                orders = create_order(o_id, c_id, p_id, qty, customers, products, orders)
-                order_counter += 1
-                print(f"Order {o_id} created.")
+            if customer_id in customers_db and product_id in products_db:
+                print(customer_id)
+                print(product_id)
+                
             else:
                 print("Invalid Customer or Product ID.")
                 

@@ -26,7 +26,6 @@ def str_validator(text: str, message:str )-> str | None:
     Returns:
         return valid str.
     """
-    
     if text.strip() == "":
         print("Name cannot be a empty. Try again!")
         text = input(f"Enter a valid {message}: ")
