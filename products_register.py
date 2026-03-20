@@ -1,8 +1,8 @@
 #the diccitionary where products will be store 
-products={
-        1:('coffe',1500),
-        2:('azucar',2000)
-    }
+#products={
+#        1:('coffe',1500),
+#        2:('azucar',2000)
+#    }
 
 #A funtion to allow the user to add a new tuple in the dictionary, assing it the ID
 def register_product(products, name, price):
@@ -15,7 +15,7 @@ def register_product(products, name, price):
 name = input("enter the product name: ")
 price = float(input("enter the product price: "))
 # we call the funtion and we save the result that it returns
-products = register_product(products,name, price )
+products = register_product(products, name, price )
 print(products)
 
  
