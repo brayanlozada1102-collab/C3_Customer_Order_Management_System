@@ -35,12 +35,12 @@ def main(customers_db, products_db, orders_db, order_id):
     #We run the program In a while loop, so the program only stop when we decide.  
     start = True
     while start :
-        #This is the options menu.
+        #This is the menu options.
         print("\n1. Register Customer\n2. Register Product\n3. Create Order\n4. View Orders\n5. Daily Income\n6. Final Report & Exit")
         option = input("Select an option: ")
         
         if option == "1":
-            
+            #The first option is to create a new user in the user database.
             name_validated = validate_inputs(str, "name")
             email = input("Enter a new customer email: ")
             email_validated = email_validator(email)
@@ -50,13 +50,14 @@ def main(customers_db, products_db, orders_db, order_id):
             print("Customer registered.")
             
         elif option == "2":
-            
+            #This is the option to create a new product in the product database.
             product_name_validated = validate_inputs(str, "name product")
             price_validated = validate_inputs(float,"price",True)
             products_db = register_product(products_db, product_name_validated, price_validated)
             print("Product registered.")
             
         elif option == "3":
+            #This is the option to create a new order. 
             if not customers_db or not products_db:
                 print("Error: Need customers and products first.")
                 continue
@@ -65,6 +66,7 @@ def main(customers_db, products_db, orders_db, order_id):
             print(">> Sale completed.")
                 
         elif option == "4":
+            #This is the option to check the order per user. 
             if not customers_db or not products_db or not orders_db:
                 print("Error: Need customers, products and orders first.")
                 continue
@@ -75,6 +77,7 @@ def main(customers_db, products_db, orders_db, order_id):
 
            
         elif option == "5":
+           #This is the option to check the final report
            if not customers_db or not products_db or not orders_db:
                 print("Error: Need customers, products and orders first.")
                 continue

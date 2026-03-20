@@ -21,7 +21,8 @@ def validate_inputs(type, message, is_number= False):
 #name = validate_inputs(str, "name") #--> If the input is going to be a str we do not place True this is just when is a number
 #age = validate_inputs(int, "age", True)
 # cantidad = validate_inputs(float, "quantity", True)
-def generate_final_report(orders_db, product_db, user_db):
+
+def generate_final_report(orders_db: dict, product_db: dict, user_db: dict) -> tuple:
     """
     Generate the final report based on the provided dictionaries.
     """
