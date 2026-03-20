@@ -34,7 +34,7 @@ def str_validator(text: str, message:str )-> str | None:
 
 #This is the user_dict creation
 def create_user(user_name: str, user_email: str) -> dict:
-    user = {"username": user_name, "email": user_email}
+    user = {"user_name": user_name, "user_email": user_email}
     return user
     
 #This is the function to add the user_dict to the database_dict
@@ -54,7 +54,7 @@ def add_to_db(user: dict, db: dict) -> dict:
 # print(customers_db)
 
 # name = input("Enter a new customer name: ")
-# name_validated = name_validator(name)
+# name_validated = str_validator(name,"name")
 
 # email = input("Enter a new customer email: ")
 # email_validated = email_validator(email)

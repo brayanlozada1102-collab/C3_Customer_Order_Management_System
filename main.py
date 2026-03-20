@@ -45,8 +45,8 @@ def main():
                 print("Error: Need customers and products first.")
                 continue
             
-            orders_db = sell_product(products_db,customers_db,orders_db,order_id)
-            order_id += 1
+            orders_db, order_id = sell_product(products_db,customers_db,orders_db,order_id)
+            print(">> Sale completed.")
                 
                 
         elif option == "4":

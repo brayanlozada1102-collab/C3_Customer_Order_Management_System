@@ -1,33 +1,35 @@
 # PRODUCTS: dictionary with (name, price)
-#products = {
- #   1: ("apple", 3000),
-  #  2: ("pear", 2000),
-  #  3: ("orange", 4000)
-#}
+products = {
+   1: ("apple", 3000),
+   2: ("pear", 2000),
+   3: ("orange", 4000)
+}
 
 # USERS: basic user database
-#user_db = {
- #   1: {
-  #      "user_name": "pepe",
-   #     "user_email": "pepe@gmail.com"
-    #    },
-   # 2: {
-   #     "user_name": "Andres",
-    #    "user_email": "andres@gmail.com" 
-     #   }
-    #}
+user_db = {
+   1: {
+       "user_name": "pepe",
+       "user_email": "pepe@gmail.com"
+       },
+   2: {
+       "user_name": "Andres",
+       "user_email": "andres@gmail.com" 
+       }
+    }
 
-
+order_db = {}
+order_id = 0
 
 def check_user_and_key(user_db):
     for key, value in user_db.items():
         print(f"the id is {key} and the user is: {value['user_name']}")
 
-def sell_product(products, user_db,orders_db,order_id):
+def sell_product(products, user_db, orders_db, order_id):
 
     print("Available users:")
     print("---------------------------------")
-    check_user_and_key(user_db)
+    for key, value in user_db.items():
+        print(f"the id is {key} and the user is: {value['user_name']}")
     print("---------------------------------")
     
     key = int(input("Enter user ID: "))
@@ -66,13 +68,13 @@ def sell_product(products, user_db,orders_db,order_id):
 
         total += subtotal
 
-        order_id += 1
+        
         orders_db[order_id] = {
             "key": key,
             "product_id": product_id,
             "quantity": quantity
         }
-
+        order_id += 1
         op = input("Do you want to add another product? (si/no): ").lower()
 
     print("------------ summary --------------")
@@ -84,7 +86,7 @@ def sell_product(products, user_db,orders_db,order_id):
     print("Total to pay:", total)
     print("=======================")
 
-    return orders_db
+    return orders_db, order_id
 
 # ===== FUNCTION CALL =====
-#sell_product(products, user_db)
+# sell_product(products, user_db, order_db, order_id )
