@@ -1,55 +1,37 @@
-# 📦 Sistema de Gestión de Pedidos - Python Challenge
+# Sales Registration System
 
-## 📝 Descripción del Proyecto
-Este sistema automatiza el registro y procesamiento de pedidos para una empresa distribuidora que actualmente opera de forma manual. El objetivo es centralizar la información de clientes, productos y ventas para calcular totales automáticamente y generar reportes de ingresos diarios.
+A Python-based command-line application designed to manage customer registrations, product inventory, and sales orders. This system provides a simple way to track daily income and generate consolidated sales reports.
 
-El proyecto está diseñado bajo un modelo colaborativo, donde cada integrante del equipo desarrolla un módulo específico que se integra en un flujo de trabajo unificado.
+## Features
 
-## 🏗️ Arquitectura y Estructuras de Datos
-De acuerdo con las *restricciones técnicas* obligatorias del desafío, el sistema utiliza exclusivamente *Diccionarios* y *Tuplas*. El uso de listas ([], .append()) está estrictamente prohibido.
+- **Customer Management**: Register new customers with email validation (minimum 10 characters, requiring '@' and '.').
+- **Product Management**: Add new products to the inventory with automated ID assignment.
+- **Order Creation**: Process sales by linking registered customers with available products and specifying quantities.
+- **Order Consultation**: View a detailed list of all current orders, including customer names and product details.
+- **Financial Tracking**: 
+  - View real-time daily income totals.
+  - Generate a final consolidated report including total orders, total income, spending grouped by customer, and total units sold per product.
 
-### Variables Generales y Estructuras Compartidas
-Para asegurar la conexión entre los diferentes módulos y las ramas (branches) de los desarrolladores, se han definido las siguientes estructuras globales:
+## Project Structure
 
-```python
-# =================================================================
-# ESTRUCTURAS DE DATOS GLOBALES (COMPARTIDAS)
-# =================================================================
+The project is modularized into several Python files:
 
-# 1. Base de Datos de Clientes (Dictionary)
-# Estructura: { id_cliente: (nombre, correo) }
-# Justificación: Búsqueda rápida por ID y datos inmutables en tupla.
-customers_db = {} 
+- `main.py`: The entry point of the application containing the main menu logic.
+- `customer_registration.py`: Functions for validating and creating customer profiles.
+- `products_register.py`: Logic for adding new items to the product database.
+- `order_creation.py`: Handles the process of creating and saving new sales.
+- `consult_order.py`: Contains functions to format and display order history.
+- `dailyincome.py`: Calculates and displays the current total of sales.
+- `final_report_generation.py`: Generates a comprehensive summary of all activities before closing.
 
-# 2. Catálogo de Productos (Dictionary de Tuplas)
-# Estructura: { id_producto: (nombre_producto, precio_unitario) }
-# Justificación: Evita cambios accidentales en precios o nombres.
-products_db = {} 
+## Requirements
 
-# 3. Registro de Pedidos (Nested Dictionaries)
-# Estructura: { id_pedido: {"cliente_id": id, "producto_id": id, "cantidad": int, "total": float} }
-# Justificación: Permite almacenar múltiples atributos por transacción sin usar listas.
-orders_db = {} 
+- Python 3.x
 
-# 4. Métricas de Control de la Jornada
-# Estas variables deben ser actualizadas por el módulo de ventas y leídas por el de reportes.
-total_ingresos_dia = 0.0
-conteo_pedidos_totales = 0
+## How to Run
 
-## 🛠️ Organización del Código y Funciones
-
-El programa se divide en 6 funcionalidades clave. Cada función debe recibir parámetros, procesar la información y retornar los resultados:
-
-1. *Registro de Clientes:* Captura y valida ID, nombre y correo electrónico.
-2. *Registro de Productos:* Gestiona el catálogo de productos disponibles.
-3. *Creación de Pedidos:* Relaciona un cliente con un producto y calcula el subtotal.
-4. *Consulta de Pedidos:* Permite buscar y mostrar el historial de ventas.
-5. *Cálculo de Ingresos:* Procesa el total recaudado de todos los pedidos del día.
-6. *Generación de Reporte Final:* Muestra un resumen detallado para la administración.
-
-## 🚀 Instrucciones para el Equipo
-
-* *Git Flow:* Trabajen en ramas separadas por funcionalidad y realicen el merge a la rama principal una vez probada la función.
-* *Validación:* Asegúrense de que cada función retorne el diccionario o tupla actualizada.
-* *Comentarios:* Documenten cada bloque de código explicando su propósito (en inglés).
-*
+1. Clone or download all the `.py` files into the same directory.
+2. Open your terminal or command prompt.
+3. Run the application using the following command:
+   ```bash
+   python main.py
