@@ -3,6 +3,8 @@ from customer_registration import email_validator,str_validator,create_user,add_
 from products_register import register_product, number_validator
 from order_creation import check_user_and_key, sell_product
 from consult_order import check_orders
+from dailyincome import show_daily_sales_total
+from final_report_generation import generate_final_report
 
 def main():
     # Initial data structures (Dictionaries only)
@@ -17,7 +19,7 @@ def main():
     print("--- Sales Registration System ---")
     
     while True :
-        print("\n1. Register Customer\n2. Register Product\n3. Create Order\n4. View Orders\n5. Final Report & Exit")
+        print("\n1. Register Customer\n2. Register Product\n3. Create Order\n4. View Orders\n5. Daily Income\n6. Final Report & Exit")
         option = input("Select an option: ")
         
         if option == "1":
@@ -61,14 +63,20 @@ def main():
 
            
         elif option == "5":
-            count, revenue = get_formatted_report(customers, products, orders)
-            print("\n============================")
-            print("      FINAL DAILY REPORT     ")
-            print("============================")
-            print(f"Total Orders: {count}")
-            print(f"Total Income: ${revenue}")
-            print("============================")
-            break
+           if not customers_db or not products_db or not orders_db:
+                print("Error: Need customers, products and orders first.")
+                continue
+           
+           show_daily_sales_total(orders_db, products_db)
+        
+        elif option == "6":
+            if not orders_db:
+                print("No orders were placed today. Closing system...")
+                break
+            else:
+                generate_final_report(orders_db, products_db, customers_db)
+                break
+
         else:
             print("Invalid option.")
 
