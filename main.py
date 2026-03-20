@@ -47,7 +47,7 @@ def main():
             
             orders_db, order_id = sell_product(products_db,customers_db,orders_db,order_id)
             print(">> Sale completed.")
-                
+            print(orders_db)
                 
         elif option == "4":
             print("\n--- Current Orders ---")

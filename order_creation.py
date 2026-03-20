@@ -79,8 +79,8 @@ def sell_product(products, user_db, orders_db, order_id):
 
     print("------------ summary --------------")
 
-    for order_id, order in orders_db.items():
-        print(f"order: {order_id} | user id: {order['key']} | product id: {order['product_id']} | quantity: {order['quantity']}")
+    for o_id, order in orders_db.items():
+        print(f"order: {o_id} | user id: {order['key']} | product id: {order['product_id']} | quantity: {order['quantity']}")
 
     print("=======================")
     print("Total to pay:", total)
