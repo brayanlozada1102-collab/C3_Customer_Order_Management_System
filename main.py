@@ -4,7 +4,7 @@ from products_register import register_product, number_validator
 from order_creation import check_user_and_key, sell_product
 from consult_order import check_orders
 from dailyincome import show_daily_sales_total
-from final_report_generation import generate_final_report
+from final_report_generation import generate_final_report, validate_inputs
 
 def main():
     # Initial data structures (Dictionaries only)
@@ -17,15 +17,14 @@ def main():
     order_id = 0
     
     print("--- Sales Registration System ---")
-    
-    while True :
+    start = True
+    while start :
         print("\n1. Register Customer\n2. Register Product\n3. Create Order\n4. View Orders\n5. Daily Income\n6. Final Report & Exit")
         option = input("Select an option: ")
         
         if option == "1":
             
-            name = input("Enter a new customer name: ")
-            name_validated = str_validator(name,"name")
+            name_validated = validate_inputs(str, "name")
             email = input("Enter a new customer email: ")
             email_validated = email_validator(email)
             new_user = create_user(name_validated, email_validated)
@@ -35,10 +34,8 @@ def main():
             
         elif option == "2":
             
-            product_name = input("Product Name: ")
-            product_name_validated = str_validator(product_name,"product name")
-            price = input("Unit Price: ")
-            price_validated = number_validator(price,float)
+            product_name_validated = validate_inputs(str, "name product")
+            price_validated = validate_inputs(float,"price",True)
             products_db = register_product(products_db, product_name_validated, price_validated)
             print("Product registered.")
             print(products_db)
@@ -72,10 +69,10 @@ def main():
         elif option == "6":
             if not orders_db:
                 print("No orders were placed today. Closing system...")
-                break
+                start = False
             else:
                 generate_final_report(orders_db, products_db, customers_db)
-                break
+                start = False
 
         else:
             print("Invalid option.")
