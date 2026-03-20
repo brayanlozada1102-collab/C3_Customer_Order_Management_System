@@ -1,32 +1,41 @@
 
 from customer_registration import email_validator, create_user,add_to_db
 from products_register import register_product
-from order_creation import check_user_and_key, sell_product
+from order_creation import sell_product
 from consult_order import check_orders
 from dailyincome import show_daily_sales_total
 from final_report_generation import generate_final_report, validate_inputs
 
-
+#This is the user database, it is a dict of dicts, in which the key is a number represent the customer ID.
 customers_db = {
     1: {
          "user_name": "pepe",
          "user_email": "pepe@gmail.com"
          }
 } 
+
+#This is the products database, it is a dict of tuples, in which the key is a number represent the product ID.
+#In the tuple the position 0 is the product name and the 1 is the product price.
 products_db = {
     1:('coffe',1500),
     2:('azucar',2000)
 } 
+
+#This is the order database, it is a dict of dicts, in which the key is a number represent the order ID.
+#In addition this is going to be filled by the customer ID, product ID and quantity, so we can allocate the customer and product based on it. 
 orders_db = {} 
 order_id = 0
 
-
+#This is the main in it there are all of the functions working together.
 def main(customers_db, products_db, orders_db, order_id):
     
-    
+    #This is the introduction message
     print("--- Sales Registration System ---")
+
+    #We run the program In a while loop, so the program only stop when we decide.  
     start = True
     while start :
+        #This is the options menu.
         print("\n1. Register Customer\n2. Register Product\n3. Create Order\n4. View Orders\n5. Daily Income\n6. Final Report & Exit")
         option = input("Select an option: ")
         

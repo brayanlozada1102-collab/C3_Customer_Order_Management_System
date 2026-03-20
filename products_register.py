@@ -1,8 +1,4 @@
-#the diccitionary where products will be store 
-products={
-        1:('coffe',1500),
-        2:('azucar',2000)
-    }
+
 
 
 def number_validator(number,type):

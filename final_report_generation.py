@@ -1,5 +1,5 @@
 
-def validate_inputs(type, message, is_number= False):
+def validate_inputs(type, message, is_number= False): 
     """
     Validate the inputs to ensure they are in the correct format
     If it's a number, set the last argument to true.
@@ -18,8 +18,8 @@ def validate_inputs(type, message, is_number= False):
             print(f"Enter a valid {'number' if is_number else 'letter'}")
             warning = " again"
 
-# name = validate_inputs(str, "name")
-# age = validate_inputs(int, "age", True)
+#name = validate_inputs(str, "name") #--> If the input is going to be a str we do not place True this is just when is a number
+#age = validate_inputs(int, "age", True)
 # cantidad = validate_inputs(float, "quantity", True)
 def generate_final_report(orders_db, product_db, user_db):
     """

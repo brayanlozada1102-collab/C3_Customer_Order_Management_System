@@ -17,20 +17,6 @@ def email_validator(email:str)-> str:
         return email_validator(email)
     return email
 
-def str_validator(text: str, message:str )-> str | None:
-    """
-    This funcion validate that input is a valid str
-    Args:
-        text:str.
-            
-    Returns:
-        return valid str.
-    """
-    if text.strip() == "":
-        print("Name cannot be a empty. Try again!")
-        text = input(f"Enter a valid {message}: ")
-        return str_validator(text)
-    return text
 
 #This is the user_dict creation
 def create_user(user_name: str, user_email: str) -> dict:

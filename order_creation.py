@@ -1,30 +1,7 @@
-# PRODUCTS: dictionary with (name, price)
-products = {
-   1: ("apple", 3000),
-   2: ("pear", 2000),
-   3: ("orange", 4000)
-}
 
-# USERS: basic user database
-user_db = {
-   1: {
-       "user_name": "pepe",
-       "user_email": "pepe@gmail.com"
-       },
-   2: {
-       "user_name": "Andres",
-       "user_email": "andres@gmail.com" 
-       }
-    }
-
-order_db = {}
-order_id = 0
-
-def check_user_and_key(user_db):
-    for key, value in user_db.items():
-        print(f"the id is {key} and the user is: {value['user_name']}")
 
 def sell_product(products, user_db, orders_db, order_id):
+    #This is the function to create an order, it uses the product database, user database and it put it in a order database with an order id.
 
     print("Available users:")
     print("---------------------------------")
