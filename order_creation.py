@@ -23,10 +23,7 @@ def check_user_and_key(user_db):
     for key, value in user_db.items():
         print(f"the id is {key} and the user is: {value['user_name']}")
 
-def sell_product(products, user_db):
-
-    orders_db = {}
-    order_id = 0
+def sell_product(products, user_db,orders_db,order_id):
 
     print("Available users:")
     print("---------------------------------")

@@ -11,8 +11,7 @@ def main():
         2:('azucar',2000)
     } 
     orders_db = {} 
-    
-    order_counter = 1
+    order_id = 0
     
     print("--- Sales Registration System ---")
     
@@ -46,15 +45,9 @@ def main():
                 print("Error: Need customers and products first.")
                 continue
             
-            customer_id = int(input("Customer ID: "))
-            product_id = int(input("Product ID: "))
-            quantity = int(input("Quantity: "))
-            
-            if customer_id in customers_db and product_id in products_db:
-                check_user_and_key
+            orders_db = sell_product(products_db,customers_db,orders_db,order_id)
+            order_id += 1
                 
-            else:
-                print("Invalid Customer or Product ID.")
                 
         elif option == "4":
             print("\n--- Current Orders ---")
