@@ -1,24 +1,38 @@
 
-from customer_registration import email_validator,str_validator
+from customer_registration import email_validator, create_user,add_to_db
+from products_register import register_product
+from order_creation import check_user_and_key, sell_product
+from consult_order import check_orders
+from dailyincome import show_daily_sales_total
+from final_report_generation import generate_final_report, validate_inputs
 
-def main():
-    # Initial data structures (Dictionaries only)
-    customers_db = {} 
-    products_db = {} 
-    orders_db = {} 
+
+customers_db = {
+    1: {
+         "user_name": "pepe",
+         "user_email": "pepe@gmail.com"
+         }
+} 
+products_db = {
+    1:('coffe',1500),
+    2:('azucar',2000)
+} 
+orders_db = {} 
+order_id = 0
+
+
+def main(customers_db, products_db, orders_db, order_id):
     
-    order_counter = 1
     
     print("--- Sales Registration System ---")
-    
-    while True :  # no user while true bro
-        print("\n1. Register Customer\n2. Register Product\n3. Create Order\n4. View Orders\n5. Final Report & Exit")
+    start = True
+    while start :
+        print("\n1. Register Customer\n2. Register Product\n3. Create Order\n4. View Orders\n5. Daily Income\n6. Final Report & Exit")
         option = input("Select an option: ")
         
         if option == "1":
             
-            name = input("Enter a new customer name: ")
-            name_validated = str_validator(name,"name")
+            name_validated = validate_inputs(str, "name")
             email = input("Enter a new customer email: ")
             email_validated = email_validator(email)
             new_user = create_user(name_validated, email_validated)
@@ -27,47 +41,47 @@ def main():
             print("Customer registered.")
             
         elif option == "2":
-            p_id = input("Product ID: ")
-            p_name = input("Product Name: ")
-            price = float(input("Unit Price: "))
-            products = add_product(p_id, p_name, price, products)
+            
+            product_name_validated = validate_inputs(str, "name product")
+            price_validated = validate_inputs(float,"price",True)
+            products_db = register_product(products_db, product_name_validated, price_validated)
             print("Product registered.")
             
         elif option == "3":
-            if not customers or not products:
+            if not customers_db or not products_db:
                 print("Error: Need customers and products first.")
                 continue
             
-            c_id = input("Customer ID: ")
-            p_id = input("Product ID: ")
-            qty = int(input("Quantity: "))
-            
-            if c_id in customers and p_id in products:
-                o_id = f"ORD-{order_counter}"
-                orders = create_order(o_id, c_id, p_id, qty, customers, products, orders)
-                order_counter += 1
-                print(f"Order {o_id} created.")
-            else:
-                print("Invalid Customer or Product ID.")
+            orders_db, order_id = sell_product(products_db,customers_db,orders_db,order_id)
+            print(">> Sale completed.")
                 
         elif option == "4":
+            if not customers_db or not products_db or not orders_db:
+                print("Error: Need customers, products and orders first.")
+                continue
+            
             print("\n--- Current Orders ---")
-            for oid, data in orders.items():
-                c_name = customers[data[0]][0]
-                p_name = products[data[1]][1]
-                print(f"ID: {oid} | Client: {c_name} | Product: {p_name} | Qty: {data[2]} | Total: ${data[3]}")
-                
+            print(check_orders(orders_db, customers_db, products_db))
+           
+
+           
         elif option == "5":
-            count, revenue = get_formatted_report(customers, products, orders)
-            print("\n============================")
-            print("      FINAL DAILY REPORT     ")
-            print("============================")
-            print(f"Total Orders: {count}")
-            print(f"Total Income: ${revenue}")
-            print("============================")
-            break
+           if not customers_db or not products_db or not orders_db:
+                print("Error: Need customers, products and orders first.")
+                continue
+           
+           show_daily_sales_total(orders_db, products_db)
+        
+        elif option == "6":
+            if not orders_db:
+                print("No orders were placed today. Closing system...")
+                start = False
+            else:
+                generate_final_report(orders_db, products_db, customers_db)
+                start = False
+
         else:
             print("Invalid option.")
 
 if __name__ == "__main__":
-    main()
+    main(customers_db, products_db, orders_db, order_id)
