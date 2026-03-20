@@ -2,6 +2,7 @@
 from customer_registration import email_validator,str_validator,create_user,add_to_db
 from products_register import register_product, number_validator
 from order_creation import check_user_and_key, sell_product
+from consult_order import check_orders
 
 def main():
     # Initial data structures (Dictionaries only)
@@ -50,12 +51,15 @@ def main():
             print(orders_db)
                 
         elif option == "4":
+            if not customers_db or not products_db or not orders_db:
+                print("Error: Need customers, products and orders first.")
+                continue
+            
             print("\n--- Current Orders ---")
-            for oid, data in orders.items():
-                c_name = customers[data[0]][0]
-                p_name = products[data[1]][1]
-                print(f"ID: {oid} | Client: {c_name} | Product: {p_name} | Qty: {data[2]} | Total: ${data[3]}")
-                
+            print(check_orders(orders_db, customers_db, products_db))
+           
+
+           
         elif option == "5":
             count, revenue = get_formatted_report(customers, products, orders)
             print("\n============================")
